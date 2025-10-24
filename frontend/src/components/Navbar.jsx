@@ -27,7 +27,7 @@ function Navbar() {
       {!showMinimalNav && (
         <div className="hidden md:flex gap-6 text-gray-300 text-md font-medium">
           <a href="/" className="hover:text-white  transition">Home</a>
-          <a href="#" className="hover:text-white transition">Join as Guest</a>
+          <a href="/:url" className="hover:text-white transition">Join as Guest</a>
           <a href="#about" className="hover:text-white transition">About us</a>
         </div>
       )}
