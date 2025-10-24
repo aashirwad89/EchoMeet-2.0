@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+#landing1{
+    margin-left: 20px;
+    padding: 4px 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#landing2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 4px 4px;
+    cursor: pointer;
+}
+#bottomHero{
+    padding: 6px 6px;
+}
+#smallBadge{
+    padding: 4px 4px;
+    margin-bottom: 10px;
+}
+#second{
+    margin-left: 15vw;
+}
+#cards{
+    margin-left: 70px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+#Footer{
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    margin-top: 18px;
+}
+
+#secondlanding{
+margin-bottom: 50px;
+}
+
+#message{
+    padding: 50px 50px;
+}
+#message2{
+    margin-bottom: 5px;
+    padding: 5px 5px;
+}
+
+#HomeHeader{
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.right-panel{
+    margin-right: 20px;
+    padding: 10px 10px;
+}
+.leftPanel{
+    padding: 10px 10px;
+    margin-left: 20px;
+}
+#Home{
+    margin-left: 100px;
+}
+.join{
+    margin-left: 10px;
+}
+.textField{
+    margin-left: 15px;
+}
