@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 app.use("/api/v1/users", userRoutes);
 
 // SPA fallback - React router ke liye
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
