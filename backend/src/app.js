@@ -3,6 +3,7 @@ import { createServer } from "node:http";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from 'path';
 
 import { connectToSocket } from "./controllers/socketManger.js";
 import userRoutes from "./routes/users.route.js";
