@@ -57,7 +57,7 @@ export default function Landing() {
               In a world scattered across time zones, <span className="text-gray-200">Echo Meet</span> bridges the impossible—turning screens into windows, calls into conversations, and distance into connection.
             </p>
             <div className="flex gap-4 pt-4">
-              <Link to={"/home"}>
+              <Link to={"/auth"}>
                 <motion.button whileHover={{ scale: 1.05 }} className="h-8 w-40 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold shadow-lg hover:shadow-blue-500/30 transition">
                   Start Your Story ↓
                 </motion.button>
