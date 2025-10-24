@@ -1,67 +1,51 @@
-// backend/src/app.js
 import express from "express";
 import { createServer } from "node:http";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
-import { fileURLToPath } from "url"; // ❗ Missing in original code
+import { fileURLToPath } from "url";
 
 import { connectToSocket } from "./controllers/socketManger.js";
 import userRoutes from "./routes/users.route.js";
 
-// ESM me __dirname define karna
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load environment variables
 dotenv.config();
 
-// Initialize Express app and HTTP server
 const app = express();
 const server = createServer(app);
-
-// Connect socket.io
 const io = connectToSocket(server);
 
-// Middleware
 app.use(cors());
 app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
-// Serve frontend static files (React build)
+// Serve React build
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // API Routes
 app.use("/api/v1/users", userRoutes);
 
-// SPA fallback - React router ke liye
-app.get("/*", (req, res) => {
+// SPA fallback for React router (must be LAST)
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
-// Port setup
 const PORT = process.env.PORT || 8000;
 
-// Database connection and server start
 const startServer = async () => {
   try {
-    const MONGO_URI = process.env.MONGO_DB;
-    if (!MONGO_URI) {
-      throw new Error("❌ MongoDB connection string not found in .env");
-    }
+    if (!process.env.MONGO_DB) throw new Error("MongoDB URI missing");
+    await mongoose.connect(process.env.MONGO_DB);
+    console.log("✅ MongoDB connected");
 
-    await mongoose.connect(MONGO_URI);
-    console.log("✅ MongoDB connected successfully");
-
-    server.listen(PORT, () => {
-      console.log(`🚀 Server is running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error("❌ Error starting server:", error.message);
-    process.exit(1); // Exit if server fails to start
+    server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+  } catch (err) {
+    console.error("❌ Server error:", err.message);
+    process.exit(1);
   }
 };
 
-// Start the server
 startServer();
